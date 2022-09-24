@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  spring:
+    build: .
+    working_dir: /app
+    container_name: angular
+    image: node:14.17.1-alpine
+    ports:
+      - "4200:4200"
+    volumes:
+      - "./:/app"
+
