@@ -1,0 +1,168 @@
+<app-breadcrumb [title]="'Dashboard'  " [items]="['Dashboard']" [active_item]="'Dashbord'"></app-breadcrumb>
+<div class="container-fluid">
+    <div class="row size-column">
+        <div class="col-xl-7 box-col-12 xl-100">
+            <div class="row dash-chart">
+                <div class="col-xl-6 box-col-6 col-md-6">
+                    <div class="card o-hidden">
+                        <div class="card-header card-no-border">
+                            <div class="card-header-right">
+                                <ul class="list-unstyled ">
+                                    <span class="badge badge-primary" style="cursor: pointer"
+                                          (click)="search()">Search</span>
+                                </ul>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <p><span class="f-w-500 font-roboto">Issue Type KPI</span><span
+                                            class="f-w-700 font-primary ml-2"></span></p>
+
+                                    <form class="register-form" [formGroup]="searchFields">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                                <label>Start Date </label>
+                                                <input type="date" class="form-control" placeholder="Name"
+                                                       formControlName="startDate">
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                                <label>End date</label>
+                                                <input type="date" class="form-control" placeholder="Name"
+                                                       formControlName="endDate">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+
+                            <div id="spaline-chart">
+                                <div class="monthly-visit">
+                                    <div id="column-chart">
+                                        <canvas baseChart
+                                                [datasets]="barChartDatas"
+                                                [labels]="barChartLabels"
+                                                [options]="barChartOptions"
+                                                [legend]="barChartLegend"
+                                                [chartType]="barChartType">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 box-col-6 col-md-6">
+                    <div class="card o-hidden">
+                        <div class="card-header card-no-border">
+                            <div class="card-header-right">
+                                <ul class="list-unstyled ">
+                                    <span class="badge badge-primary" style="cursor: pointer" (click)="searchStatu()">Search</span>
+                                </ul>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <p><span class="f-w-500 font-roboto">Issue Type Status  KPI</span><span
+                                            class="f-w-700 font-primary ml-2"></span></p>
+
+                                    <form class="register-form" [formGroup]="searchStatus">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                                <label>Start Date </label>
+                                                <input type="date" class="form-control" placeholder="Name"
+                                                       formControlName="startDate">
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                                <label>End date</label>
+                                                <input type="date" class="form-control" placeholder="Name"
+                                                       formControlName="endDate">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+
+                            <div id="spaline-chart">
+                                <div class="monthly-visit">
+                                    <div id="column-chart">
+                                        <div class="container">
+                                            <canvas #chart baseChart
+                                                    [data]="pieChartData"
+                                                    [labels]="pieChartLabels"
+                                                    [chartType]="pieChartType"
+                                                    [legend]="true"
+                                                    (chartClick)="onChartClick($event)"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-12 box-col-12 col-md-12">
+                    <div class="card o-hidden">
+                        <div class="card-header card-no-border">
+                            <!--                            <div class="card-header-right">-->
+                            <!--                                <ul class="list-unstyled ">-->
+                            <!--                                    <span class="badge badge-primary" style="cursor: pointer" (click)="searchStatu()">Search</span>-->
+                            <!--                                </ul>-->
+                            <!--                            </div>-->
+                            <div class="media">
+                                <div class="media-body">
+                                    <p><span class="f-w-500 font-roboto">List All Issue Type </span><span
+                                            class="f-w-700 font-primary ml-2"></span></p>
+
+                                    <!--                                    <form class="register-form" [formGroup]="searchStatus">-->
+                                    <!--                                        <div class="row">-->
+                                    <!--                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">-->
+                                    <!--                                                <label>Start Date </label>-->
+                                    <!--                                                <input type="date" class="form-control" placeholder="Name"-->
+                                    <!--                                                       formControlName="startDate" >-->
+                                    <!--                                            </div>-->
+                                    <!--                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">-->
+                                    <!--                                                <label>End date</label>-->
+                                    <!--                                                <input type="date" class="form-control" placeholder="Name"-->
+                                    <!--                                                       formControlName="endDate" >-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </form>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+
+                            <div id="spaline-chart">
+                                <div class="monthly-visit">
+                                    <div id="column-chart">
+                                        <div class="container">
+                                            <ngx-datatable class="bootstrap" [rows]="listIssues"
+                                                           [columns]="[{name:'Key'},
+                                                           {name:'IssueType'},
+                                                           {name:'Summary'},
+                                                           {name:'reporter'},
+                                                           {name:'creator'},
+                                                           {name:'assignee'},
+                                                           {name:'status'},
+                                                           {name:'created'},
+                                                           {name:'updated'},
+                                                           ]" [columnMode]="'force'"
+                                                           [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+                                                           [limit]="10">
+                                            </ngx-datatable>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

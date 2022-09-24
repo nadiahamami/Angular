@@ -1,0 +1,74 @@
+<app-breadcrumb [title]="'User'" [items]="['Apps', 'User']" [active_item]="'Edit Profile'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="edit-profile">
+    <div class="row">
+      <div class="col-xl-8 xl-100">
+        <form class="card" [formGroup]="editProfile" (ngSubmit)="saveUpdate()">
+          <div class="card-header">
+            <h4 class="card-title mb-0">{{ 'common.cardTitle.editProfile' | translate }}</h4>
+            <div class="card-options"><a class="card-options-collapse" href="javascript:void(0)"
+                data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove"
+                href="javascript:void(0)" data-toggle="card-remove"><i class="fe fe-x"></i></a></div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label class="form-label">{{ 'user.fields.firstName' | translate }}</label>
+                  <input class="form-control" type="text" placeholder="{{ 'user.fields.firstName' | translate }}" formControlName="firstName"
+                    onlyAlphabets>
+                    <div *ngIf="submitted && editProfile.controls.firstName.errors?.required"
+                      class="text text-danger mt-1">
+                        {{ 'user.validations.firstNameRequired' | translate }}
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label class="form-label">{{ 'user.fields.lastName' | translate }}</label>
+                  <input class="form-control" type="text" placeholder="{{ 'user.fields.lastName' | translate }}" formControlName="lastName"
+                    onlyAlphabets>
+                    <div *ngIf="submitted && editProfile.controls.lastName.errors?.required"
+                      class="text text-danger mt-1">
+                        {{ 'user.validations.lastNameRequired' | translate }}
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label class="form-label">{{ 'user.fields.email' | translate }}</label>
+                  <input disabled class="form-control" type="email" placeholder="{{ 'user.fields.email' | translate }}" formControlName="email">
+                  <div *ngIf="submitted && editProfile.controls.email.errors?.required"
+                      class="text text-danger mt-1">
+                      {{ 'user.validations.emailRequired' | translate }}
+                  </div>
+                  <div *ngIf="submitted && editProfile.controls.email.errors?.email"
+                      class="text text-danger mt-1">
+                      {{ 'user.validations.emailBadFormat' | translate }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label class="form-label">{{ 'user.fields.password' | translate }}</label>
+                  <input class="form-control" type="password" placeholder="{{ 'user.fields.password' | translate }}" formControlName="password">
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="form-group">
+                  <label class="form-label">{{ 'user.fields.avatar' | translate }}</label>
+                  <input class="file-form-control" type="file" (change)="onFileChange($event)" accept="image/*">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-right">
+            <button class="btn btn-primary" type="submit">
+              <i class="fa fa-save"></i> {{ 'user.buttons.updateProfile' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

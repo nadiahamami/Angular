@@ -1,0 +1,45 @@
+<app-breadcrumb [title]="'Users'" [items]="['Apps', 'User']" [active_item]="'Edit Profile'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="edit-profile">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">{{ 'common.cardTitle.userIndex' | translate }}</h4>
+            <div class="card-options"><a class="card-options-collapse" href="javascript:void(0)"
+                data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove"
+                href="javascript:void(0)" data-toggle="card-remove"><i class="fe fe-x"></i></a></div>
+          </div>
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap">
+              <thead>
+                <tr>
+                  <th>{{ 'user.fields.firstName' | translate }}</th>
+                  <th>{{ 'user.fields.lastName' | translate }}</th>
+                  <th>{{ 'user.fields.email' | translate }}</th>
+                  <th>{{ 'common.tables.createdAt' | translate }}</th>
+                  <th class="text-center">{{ 'common.tables.actions' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{ user?.firstName}}</td>
+                  <td>{{ user?.lastName}}</td>
+                  <td>{{ user?.email}}</td>
+                  <td>{{ user?.createdAt | date}}</td>
+                  <td class="text-center">
+                    <button class="btn btn-primary btn-sm mr-1" [routerLink]="['/user/update', user?.id]">
+                      <i class="fa fa-edit"></i> {{ 'common.tables.update' | translate }}</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteUser(user?.id)">
+                      <i class="fa fa-trash"></i> {{ 'common.tables.delete' | translate }}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

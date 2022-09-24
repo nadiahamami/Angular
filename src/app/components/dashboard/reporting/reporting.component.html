@@ -1,0 +1,95 @@
+<app-breadcrumb [title]="'Reporting'  " [items]="['Reporting']" [active_item]="'Reporting'"></app-breadcrumb>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row size-column">
+        <div class="col-xl-7 box-col-12 xl-100">
+            <div class="row dash-chart">
+                <div class="col-xl-12 box-col-12 col-md-12">
+                    <div class="card o-hidden">
+                        <div class="card-header card-no-border">
+                            <div class="card-header-right">
+                                <div  class="media-body text-center mb-3 " >
+                                    <div  class="btn btn-outline-primary" (click)="listDetailsIssuesTypeSearch()">Search</div>
+                                    <div (click)="reportingDataExcel()"  class="btn btn-outline-primary">Export excel</div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <p><span class="f-w-500 font-roboto">List All Issue Type </span><span
+                                            class="f-w-700 font-primary ml-2 "></span></p>
+
+                                    <form class="register-form" [formGroup]="reportingFields">
+                                        <div class="row pt-4">
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-2">
+                                                <div class="form-group">
+                                                    <label class="form-label">IssueType</label>
+                                                    <select class="form-control btn-square" formControlName="status">
+                                                        <option disabled value="null">Select IssueType</option>
+                                                        <option value="All">Standard</option>
+                                                        <option value="Story">Story</option>
+                                                        <option value="Bug">Bug</option>
+                                                        <option value="Epic">Epic</option>
+                                                        <option value="Task">Task</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-2">
+                                                <div class="form-group">
+                                                    <label class="form-label">Project Key</label>
+                                                    <select class="form-control btn-square" formControlName="projectkey"
+                                                        [(ngModel)]='ngSelect'>
+                                                        <option value="All">All</option>
+                                                        <option *ngFor="let item of projectList"
+                                                            [value]="item?.projectKey">
+                                                            {{ item?.displayName }}
+                                                        </option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-2">
+                                                <label>Start Date </label>
+                                                <input type="date" class="form-control" placeholder="Name"
+                                                    formControlName="startDate"  [(ngModel)] = "now" (change)="setEndDate()">
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-2">
+                                                <label>End date</label>
+                                                
+                                                <input type="date" class="form-control" placeholder="Name"
+                                                    formControlName="endDate" [min]="startOn">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+
+                            <div id="spaline-chart">
+                                <div class="monthly-visit">
+                                    <div id="column-chart">
+                                        <div class="container">
+                                            <ngx-datatable class="bootstrap" [rows]="listIssues" [columns]="[{name:'Key'},
+                                                           {name:'IssueType'},
+                                                           {name:'Summary'},
+                                                           {name:'reporter'},
+                                                           {name:'creator'},
+                                                           {name:'assignee'},
+                                                           {name:'status'},
+                                                           {name:'created'},
+                                                           {name:'updated'},
+                                                           ]" [columnMode]="'force'" [headerHeight]="50"
+                                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                                            </ngx-datatable>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
